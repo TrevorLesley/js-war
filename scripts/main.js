@@ -75,7 +75,7 @@
 
     //==========================================
 
-    // Below are the prototypes for the rules of the game to be used per match.
+    // This is the deal function to deal out half the cards to each player.
 
     Game.prototype.deal = function () {
         this.shuffle(this.deck.cards);
@@ -89,6 +89,8 @@
         });
     }
 
+    // This is the shuffle function to shuffle the deck per game.
+
     Game.prototype.shuffle = function (deck) {
         let i = deck.length, j, temp;
 
@@ -101,6 +103,8 @@
         this.player1.cardCount = this.player1.hand.length;
         this.player2.cardCount = this.player2.hand.length;
     }
+
+    // This is the draw function for each player to draw one card per hand.
 
     Game.prototype.draw = function () {
         const player1Card = this.player1.hand.shift();
@@ -127,6 +131,8 @@
 
     }
 
+    // This is the function used to compare the value of each player's card to determine the winner of the hand.
+
     Game.prototype.compare = function () {
         if ([this.pot - 1] > [this.pot - 2]) {
             this.pot.push(game.player1.hand);
@@ -139,6 +145,7 @@
         }
     }
 
+    // This is the play function to play the game.
 
     Game.prototype.play = function () {
         this.shuffle(this.deck.cards);
