@@ -134,14 +134,14 @@
 
     Game.prototype.compare = function () {
         if (this.pot[0]['value'] > this.pot[1]['value']) {
-            console.log(`${player1.name} wins the hand.`)
+            console.log(`${this.player1.name} wins the hand.`)
             this.pot.push(game.player1.hand);
-            pot = [];
+            this.pot = [];
             game.draw();
         } else if (this.pot[0]['value'] < this.pot[1]['value']) {
-            console.log(`${player2.name} wins the hand.`)
+            console.log(`${this.player2.name} wins the hand.`)
             this.pot.push(game.player2.hand);
-            pot = [];
+            this.pot = [];
             game.draw();
         } else if (this.pot[0]['value'] == this.pot[1]['value']) {
             console.log(`It's war.`)
@@ -161,6 +161,11 @@
         game.draw();
         while (this.player1.hand.length > 0 || this.player2.hand.length > 0) {
             game.compare();
+        }
+        if (this.player1.hand.length = 0) {
+            console.log(`${this.player2} wins!`);
+        } else if (this.player2.hand.length = 0) {
+            console.log(`${this.player1} wins!`);
         }
     }
 
