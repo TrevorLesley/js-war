@@ -77,19 +77,6 @@
 
     // Below are the prototypes for the rules of the game to be used per match.
 
-    Game.prototype.shuffle = function (deck) {
-        let i = deck.length, j, temp;
-
-        while (i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            temp = deck[i];
-            deck[i] = deck[j];
-            deck[j] = temp;
-        }
-        this.player1.cardCount = this.player1.hand.length;
-        this.player2.cardCount = this.player2.hand.length;
-    }
-
     Game.prototype.deal = function () {
         this.shuffle(this.deck.cards);
 
@@ -102,41 +89,17 @@
         });
     }
 
-    Game.prototype.compare = function () {
-        let player1Card = game.player1.hand[game.player1.hand.length - 1];
-        let player2Card = game.player2.hand[game.player2.hand.length - 1];
+    Game.prototype.shuffle = function (deck) {
+        let i = deck.length, j, temp;
 
-        if (player1Card.number > player2Card.number) {
-            game.player1.hand.unshift(player2Card);
-            console.log(`${player1} drew a ${player1Card.number}, and ${player2} drew a ${player2Card.number}; ${player1} wins the hand.`);
-            a = game.player1.hand.pop();
-            game.player1.hand.unshift(a);
-            game.player2.hand.pop();
-        } else if (player1Card.number < player2Card.number) {
-            game.player2.hand.unshift(player1Card);
-            console.log(`${player1} drew a ${player1Card.number}, and ${player2} drew a ${player2Card.number}; ${player2} wins the hand.`);
-            a = game.player2.hand.pop();
-            game.player2.hand.unshift(a);
-            game.player1.hand.pop();
-        } else if (player1Card.number == player2Card.number) {
-            console.log(`Cards are equal; it's war!`);
-            for (i = 0; i < 3; i++) {
-                a = game.player1.hand.pop();
-                b = game.player2.hand.pop();
-                game.pot.push(a);
-                game.pot.push(b);
-            } if (game.pot[2].number > game.pot[5].number) {
-                console.log(`${player1} wins the war.`);
-                game.player1.hand.push(game.pot[0], game.pot[1], game.pot[2], game.pot[3], game.pot[4], game.pot[5]);
-                game.pot = [];
-            } else if (game.pot[2].number < game.pot[5].number) {
-                game.player2.hand.push(game.pot[0], game.pot[1], game.pot[2], game.pot[3], game.pot[4], game.pot[5]);
-                game.pot = [];
-            } else if (game.pot[2].number === game.pot[5].number) {
-                this.compare();
-                game.pot = [];
-            }
+        while (i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            temp = deck[i];
+            deck[i] = deck[j];
+            deck[j] = temp;
         }
+        this.player1.cardCount = this.player1.hand.length;
+        this.player2.cardCount = this.player2.hand.length;
     }
 
     Game.prototype.draw = function () {
@@ -162,6 +125,18 @@
         console.log(`${this.player2.name} draws a ${player2Card.print()}.`)
 
 
+    }
+
+    Game.prototype.compare = function () {
+        if ([this.pot - 1] > [this.pot - 2]) {
+            this.pot.push(game.player1.hand);
+            pot = [];
+        } else if ([this.pot - 1] < [this.pot - 2]) {
+            this.pot.push(game.player2.hand);
+            pot = [];
+        } else if ([this.pot - 1] == [this.pot - 2]) {
+            game.draw(), 3;
+        }
     }
 
 
