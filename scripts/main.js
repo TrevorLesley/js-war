@@ -133,15 +133,18 @@
     // This is the function used to compare the value of each player's card to determine the winner of the hand.
 
     Game.prototype.compare = function () {
-        if ([this.pot - 1] > [this.pot - 2]) {
+        if (this.pot[0]['value'] > this.pot[1]['value']) {
+            console.log(`${player1.name} wins the hand.`)
             this.pot.push(game.player1.hand);
             pot = [];
             game.draw();
-        } else if ([this.pot - 1] < [this.pot - 2]) {
+        } else if (this.pot[0]['value'] < this.pot[1]['value']) {
+            console.log(`${player2.name} wins the hand.`)
             this.pot.push(game.player2.hand);
             pot = [];
             game.draw();
-        } else if ([this.pot - 1] == [this.pot - 2]) {
+        } else if (this.pot[0]['value'] == this.pot[1]['value']) {
+            console.log(`It's war.`)
             game.draw();
         }
     }
@@ -163,6 +166,6 @@
 
     const game = new Game();
 
-    // game.play();
+    game.play();
 
 })();
