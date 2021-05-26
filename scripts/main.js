@@ -57,8 +57,6 @@
     const Player = function ({ name } = {}) {
         this.name = name;
         this.hand = [];
-        this.cardCount = 0;
-        this.draw = null;
     }
 
     const Game = function () {
@@ -129,6 +127,7 @@
         console.log(`${this.player2.name} draws a ${player2Card.print()}.`)
 
 
+
     }
 
     // This is the function used to compare the value of each player's card to determine the winner of the hand.
@@ -137,11 +136,13 @@
         if ([this.pot - 1] > [this.pot - 2]) {
             this.pot.push(game.player1.hand);
             pot = [];
+            game.draw();
         } else if ([this.pot - 1] < [this.pot - 2]) {
             this.pot.push(game.player2.hand);
             pot = [];
+            game.draw();
         } else if ([this.pot - 1] == [this.pot - 2]) {
-            game.draw(), 3;
+            game.draw();
         }
     }
 
@@ -155,12 +156,13 @@
         console.log(`\n`);
 
         game.draw();
-        game.compare();
-
+        while (this.player1.hand.length > 0 || this.player2.hand.length > 0) {
+            game.compare();
+        }
     }
 
     const game = new Game();
 
-    game.play();
+    // game.play();
 
 })();
