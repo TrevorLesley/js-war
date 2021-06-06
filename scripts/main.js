@@ -1,6 +1,7 @@
 (function () {
     'use strict';
 
+    const $button = document.querySelector('.button');
     //  This is the constructor for the cards.
 
     const Card = function ({ value, suit } = {}) {
@@ -36,8 +37,7 @@
             'A',
         ]
 
-        return `${values[this.value]} of ${suits[this.suit][0].toUpperCase()}${suits[this.suit].slice(1)}
-}`;
+        return `${values[this.value]} of ${suits[this.suit][0].toUpperCase()}${suits[this.suit].slice(1)}`;
     }
 
     //==========================================
@@ -144,7 +144,7 @@
             this.pot = [];
             game.draw();
         } else if (this.pot[0]['value'] == this.pot[1]['value']) {
-            console.log(`It's war.`)
+            console.log(`It's war.`);
             game.draw();
         }
     }
@@ -159,15 +159,14 @@
         console.log(`\n`);
 
         game.draw();
-        while (this.player1.hand.length > 0 || this.player2.hand.length > 0) {
-            game.compare();
-        }
-        if (this.player1.hand.length = 0) {
-            console.log(`${this.player2} wins!`);
-        } else if (this.player2.hand.length = 0) {
-            console.log(`${this.player1} wins!`);
-        }
-    }
+        // while (this.player1.hand.length > 0 || this.player2.hand.length > 0) {
+        //     game.compare();
+       
+        
+    };
+    
+    $button.addEventListener('click', console.log(`I'm working.`));
+    
 
     const game = new Game();
 
