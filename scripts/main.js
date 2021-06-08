@@ -100,15 +100,18 @@
         if (this.pot[0]['value'] > this.pot[1]['value']) {
             console.log(`${this.player1.name} wins the hand.`)
             this.pot.push(game.player1.hand);
+            console.log(`\n`)
             this.pot = [];
             game.draw();
         } else if (this.pot[0]['value'] < this.pot[1]['value']) {
             console.log(`${this.player2.name} wins the hand.`)
+            console.log(`\n`)
             this.pot.push(game.player2.hand);
             this.pot = [];
             game.draw();
         } else if (this.pot[0]['value'] == this.pot[1]['value']) {
             console.log(`It's war.`);
+            console.log(`\n`)
             for (let i = 0; i < 4; i++) {
                 game.draw();
             }
@@ -126,7 +129,8 @@
         // document.getElementById("button-1").innerHTML = "YOU CLICKED ME!";
             if (game.player1.hand.length > 0 || game.player2.hand.length > 0) {
                 game.compare();
-        }
+            }
+            
     }};
     const game = new Game();
     game.play();
