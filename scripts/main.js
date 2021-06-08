@@ -131,7 +131,14 @@
                 game.compare();
             }
             
-    }};
+        }
+        if (game.player1.hand.length == 0) {
+            console.log(`${this.player2} wins the game!`);
+        } else if (game.player2.hand.length == 0) {
+            console.log(`${this.player1} wins the game!`)
+        }
+    };
     const game = new Game();
     game.play();
+    
 })();
