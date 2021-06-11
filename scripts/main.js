@@ -116,6 +116,11 @@
                 game.draw();
             }
         }
+        if (game.player1.hand.length == 0) {
+            console.log(`${this.player2.name} wins the game!`);
+        } else if (game.player2.hand.length == 0) {
+            console.log(`${this.player1.name} wins the game!`)
+        }
     }
     // This is the play function to play the game.
     Game.prototype.play = function () {
@@ -132,11 +137,7 @@
             }
             
         }
-        if (game.player1.hand.length == 0) {
-            console.log(`${this.player2} wins the game!`);
-        } else if (game.player2.hand.length == 0) {
-            console.log(`${this.player1} wins the game!`)
-        }
+        
     };
     const game = new Game();
     game.play();
